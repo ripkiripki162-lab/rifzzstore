@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>RIFZZ STORE - Premium Graffiti</title>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Anton&family=Plus+Jakarta+Sans:wght@400;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',system-ui,Arial,sans-serif}
+html,body{background:#030712;color:#fff;overflow:hidden}
+.app{width:100%;height:100dvh;display:flex;flex-direction:column;background:radial-gradient(700px 300px at 50% -10%,#0057FF44,transparent),#030712}
+.top{flex:0 0 auto;background:rgba(255,255,255,.06);backdrop-filter:blur(14px);padding:12px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#0057FF,#00C6FF);display:grid;place-items:center;font-family:'Permanent Marker',cursive;font-size:22px;box-shadow:0 0 22px #0057FFAA;transform:rotate(-3deg);overflow:hidden}
+.logo img{width:100%;height:100%;object-fit:cover}
+.top-nama{font-family:'Permanent Marker',cursive;font-size:20px;line-height:1;text-shadow:2px 2px 0 #0057FF,4px 4px 0 rgba(0,0,0,.4);transform:rotate(-1deg)}
+.main{flex:1;overflow-y:auto;padding:14px}
+.search{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px;color:#fff;outline:none}
+.search::placeholder{color:#8A9BB8}
+/* HERO CUMA GANTI JADI FOTO PANJANG */
+.hero{margin:14px 0;border-radius:26px;overflow:hidden;background:#000;border:2px solid #0057FF;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 24px 50px rgba(0,87,255,.45);position:relative}
+.hero img.banner{width:100%;height:220px;object-fit:cover;display:block}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.6));display:flex;flex-direction:column;justify-content:flex-end;padding:14px}
+.hero-badge{display:inline-block;background:#FFE600;color:#000;font-family:'Anton',sans-serif;font-size:11px;letter-spacing:2px;padding:6px 12px;border-radius:100px;transform:rotate(-2deg);box-shadow:3px 3px 0 #000;width:fit-content}
+.hero-btn{margin-top:10px;background:#fff;color:#0057FF;border:none;padding:11px 18px;border-radius:14px;font-weight:900;font-size:13px;box-shadow:4px 4px 0 #000;width:fit-content}
+.hero-stiker{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.hero-stiker span{background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.25);padding:7px 11px;border-radius:100px;font-size:11px;font-weight:900}
+.hero-bottom{background:#000;padding:10px 14px;display:flex;justify-content:space-between;font-size:10px;font-weight:900;letter-spacing:1.5px;color:#00C6FF}
+.mini{display:flex;gap:8px;margin:14px 0}.mini div{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:11px;text-align:center;font-size:11px;font-weight:700}.mini span{font-size:18px;display:block}
+h3{font-size:15px;margin:14px 0 10px}.cats{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}.cat{flex:0 0 auto;background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.1);border-radius:16px;padding:10px 12px;text-align:center;min-width:80px;font-size:12px;font-weight:800;color:#fff}.cat.active{border-color:#00C6FF;background:#0057FF}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding-bottom:10px}.card{background:#0E1A36;border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;cursor:pointer;position:relative}.card img{width:100%;height:135px;object-fit:cover;display:block}.card .p{padding:11px}.badge{position:absolute;top:8px;left:8px;background:#FF2D55;color:#fff;font-size:10px;font-weight:900;padding:4px 8px;border-radius:20px}.judul{font-size:12px;font-weight:800;line-height:1.4;height:34px;overflow:hidden}.coret{font-size:11px;color:#7A8AA8;text-decoration:line-through}.harga{font-size:14px;font-weight:900;color:#00D4FF}.hemat{font-size:11px;color:#00E676;font-weight:800}.desc{font-size:11px;color:#8A9BB8;margin-top:4px;height:28px;overflow:hidden}
+.btn{width:100%;background:linear-gradient(90deg,#0057FF,#00C6FF);color:#fff;border:none;padding:13px;border-radius:14px;font-weight:900;margin-top:10px}.btn2{background:transparent;color:#00C6FF;border:2px solid #00C6FF;padding:11px;border-radius:14px;font-weight:800;width:100%}.btn-green{background:#25D366;color:#fff;border:none;padding:13px;border-radius:14px;font-weight:900;width:100%}
+input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1.5px solid rgba(255,255,255,.15);margin-bottom:10px;font-size:13px;background:#0E1A36;color:#fff}label{font-size:12px;font-weight:800;display:block;margin:10px 0 4px}
+.bottom{flex:0 0 auto;background:#080F24;display:flex;justify-content:space-around;padding:12px 0 16px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;font-weight:800;text-align:center}.bottom div{cursor:pointer;color:#7A8AA8}.bottom div.on{color:#00C6FF}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:50;display:none;align-items:flex-end;justify-content:center}.modal.on{display:flex}.sheet{background:#0E1A36;width:100%;max-height:92dvh;overflow-y:auto;border-radius:26px 26px 0 0;padding:18px}.sheet img{width:100%;height:210px;object-fit:cover;border-radius:16px}.page{display:none}.page.on{display:block}
+.chip{display:inline-block;background:#0057FF33;color:#00C6FF;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:800;margin:2px}
+.admin-card{background:#0E1A36;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:12px;margin-bottom:10px;display:flex;gap:10px;align-items:center}.admin-card img{width:60px;height:60px;object-fit:cover;border-radius:10px}
+.lock{background:#0E1A36;border-radius:20px;padding:20px;text-align:center}.lock input{text-align:center;font-size:22px;letter-spacing:8px;font-weight:900}
+.kosong{border:2px dashed rgba(255,255,255,.15);border-radius:20px;padding:28px;text-align:center;color:#8A9BB8;font-size:13px;line-height:1.6}
+.note-kuning{background:#FFE600;color:#000;border-radius:18px;padding:16px;border:3px solid #000;box-shadow:5px 5px 0 #000;margin-top:14px}
+.note-kuning b{font-family:'Anton',sans-serif;letter-spacing:1px;font-size:16px}
+.langkah{background:#0E1A36;border-radius:16px;padding:14px;margin-bottom:10px;display:flex;gap:12px;align-items:flex-start}
+.langkah b{flex:0 0 32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#0057FF,#00C6FF);display:grid;place-items:center;font-size:14px}
+.wa-big{background:#25D366;border-radius:18px;padding:16px;text-align:center;margin-bottom:14px;border:2px solid #fff3}
+</style></head><body>
+<div class="app">
+<div class="top"><div class="logo"><img src=https://i.imgur.com/JwGQMBa.jpeg"></div><div style="line-height:1.1"><div class="top-nama">RIFZZ STORE</div><small style="color:#8A9BB8;font-size:11px">Jual Beli Akun Game Aman ✓</small></div><span style="margin-left:auto;font-size:18px" onclick="mintaPIN()">⚙️</span></div>
+<div class="main" id="scrollArea">
+<div id="page-home" class="page on">
+<input class="search" id="cari" placeholder="🔍 Cari akun FF, ML..." oninput="render()">
+<div class="hero" id="hero">
+<img class="banner" src="https://i.imgur.com/ZQEL0uq.jpeg" alt="SELAMAT DATANG DI RIFZZ STORE">
+<div class="hero-overlay">
+<button class="hero-btn" onclick="document.getElementById('grid').scrollIntoView({behavior:'smooth'})">🔥 LIHAT AKUN ⬇️</button>
+<div class="hero-stiker"><span>⚽ FREE FIRE</span><span>🔥 FLASH SALE</span><span>💙 100% AMAN</span></div>
+</div>
+</div>
+<div class="hero-bottom"><span>RIFZZ STORE • EST 2025</span><span>💙 100% AMAN</span></div>
+<div class="mini"><div><span>🛡️</span>Transaksi Aman</div><div><span>✅</span>Garansi Akun</div><div onclick="chatAdmin()"><span>💬</span>Bantuan Admin</div></div>
+<h3>Pilih game favoritmu</h3>
+<div class="cats">
+<div class="cat active" onclick="setCat('all',this)">🎮<br>Semua</div>
+<div class="cat" onclick="setCat('Free Fire',this)">🔥<br>Free Fire</div>
+<div class="cat" onclick="setCat('Mobile Legends',this)">⚔️<br>Mobile Legends</div>
+<div class="cat" onclick="setCat('Flash Sale',this)">⚡<br>Flash Sale</div>
+<div class="cat" onclick="setCat('Pelajar',this)">🎓<br>Pelajar</div>
+</div>
+<h3 id="judulList">⚡ Semua Akun <small style="float:right;color:#00C6FF" id="jmlAtas">0 Akun</small></h3>
+<div class="grid" id="grid"></div>
+<div id="kosong" class="kosong">😴 Belum ada akun.<br>Admin belum nambahin akun nih.<br>Chat admin dulu yuk!<br><br><button class="btn-green" onclick="chatAdmin()">💬 CHAT ADMIN 0857-2588-7705</button></div>
+</div>
+<div id="page-sosmed" class="page"><h3>📱 Sosial Media RIFZZ STORE</h3><div style="background:#0E1A36;border-radius:16px;padding:16px"><p style="font-size:13px;line-height:1.9"><b>TikTok:</b> @JB || RIFZZ STORE<br><b>IG:</b> @rifzz_keceabis<br><b>WA Admin:</b> 0857-2588-7705</p><button class="btn-green" style="margin-top:10px" onclick="chatAdmin()">💬 CHAT ADMIN 0857-2588-7705</button></div>
+<div class="note-kuning"><b>⚠️ NOTE - WAJIB BACA!</b><br><br><span style="font-size:13px;line-height:1.6;font-weight:800">JANGAN LUPA SV RIFZZ STORE BIAR NGGAK TERKENA CLONE!<br><br>KALO KALIAN TERKENA CLONE, GW GAK TANGGUNG JAWAB! INGAT!!<br><br>Pastikan cuma chat ke WA 0857-2588-7705 & TikTok @JB || RIFZZ STORE yang asli.</span></div></div>
+<div id="page-bantuan" class="page">
+<h3>🆘 Bantuan - Cara Beli Lengkap (10 Langkah)</h3>
+<div class="wa-big" onclick="chatAdmin()"><div style="font-size:34px">💬</div><b style="font-size:17px">BANTUAN ADMIN</b><br><span style="font-size:13px;opacity:.9">Pencet ini kalo udah baca cara belinya, langsung masuk WA Admin</span><br><button class="btn" style="background:#fff;color:#25D366;margin-top:10px" onclick="event.stopPropagation();chatAdmin()">💬 CHAT ADMIN SEKARANG - 0857-2588-7705</button></div>
+<div class="langkah"><b>1</b><div><b>Buka Beranda</b><br><span style="font-size:13px;color:#8A9BB8">Pilih akun yang lu mau beli di Beranda.</span></div></div>
+<div class="langkah"><b>2</b><div><b>Klik Kartu Akunnya</b><br><span style="font-size:13px;color:#8A9BB8">Klik fotonya buat liat harga, deskripsi lengkap & spek akun.</span></div></div>
+<div class="langkah"><b>3</b><div><b>Baca Deskripsi Sampai Habis</b><br><span style="font-size:13px;color:#8A9BB8">Cek loginnya apa, bind apa, vaultnya apa. Jangan asal beli.</span></div></div>
+<div class="langkah"><b>4</b><div><b>Klik BELI VIA WA</b><br><span style="font-size:13px;color:#8A9BB8">Tombol hijau itu langsung nyambung ke WA Admin 0857-2588-7705.</span></div></div>
+<div class="langkah"><b>5</b><div><b>Chat Admin, Bilang Mau Akun Yang Mana</b><br><span style="font-size:13px;color:#8A9BB8">Kirim screenshot akunnya biar admin gak salah kirim.</span></div></div>
+<div class="langkah"><b>6</b><div><b>Tanya Stok & Harga Final</b><br><span style="font-size:13px;color:#8A9BB8">Pastikan akun masih ada & harga udah pas.</span></div></div>
+<div class="langkah"><b>7</b><div><b>Bayar Pake REKBER Biar Aman</b><br><span style="font-size:13px;color:#8A9BB8">JANGAN mau transfer langsung ke orang gak dikenal. Pake REKBER / admin.</span></div></div>
+<div class="langkah"><b>8</b><div><b>Terima Akun Dari Admin</b><br><span style="font-size:13px;color:#8A9BB8">Admin kirim email / pass / data akunnya.</span></div></div>
+<div class="langkah"><b>9</b><div><b>Cek Akun Langsung</b><br><span style="font-size:13px;color:#8A9BB8">Login, cek speknya sama gak kaya deskripsi. Ganti password + bind lu.</span></div></div>
+<div class="langkah"><b>10</b><div><b>Bilang DONE & Kasih Testi</b><br><span style="font-size:13px;color:#8A9BB8">Kalo udah aman, bilang DONE ke admin biar dana diterusin. Jangan lupa SV RIFZZ STORE!</span></div></div>
+<button class="btn-green" onclick="chatAdmin()">💬 BANTUAN ADMIN - PENCET KALO UDAH BACA</button>
+<div class="note-kuning"><b>⚠️ NOTE</b><br><span style="font-size:13px;font-weight:800;line-height:1.6">JANGAN LUPA SV RIFZZ STORE BIAR NGGAK TERKENA CLONE! KALO TERKENA CLONE GW GAK TANGGUNG JAWAB!</span></div>
+</div>
+<div id="page-admin" class="page">
+<div id="kunciAdmin" class="lock"><div style="font-size:44px">🔒</div><h3>Admin Terkunci</h3><p style="font-size:13px;color:#8A9BB8">Masukin PIN:</p><input id="inputPIN" type="password" maxlength="6" placeholder="••••"><button class="btn" onclick="cekPIN()">🔓 BUKA ADMIN</button>
+<div class="note-kuning" style="margin-top:14px;text-align:left"><b>🔒 KENAPA ADMIN DIKUNCI?</b><br><br><span style="font-size:12.5px;font-weight:700;line-height:1.7">Halaman ini sengaja dikunci karena hanya untuk Admin RIFZZ STORE.<br><br>Di dalam sini ada kontrol toko: tambah akun, hapus akun, ubah harga, dan ubah PIN. Kalau dibuka untuk umum, ada yang iseng bisa hapus semua akun, ganti harga jadi 0, atau ngacak-ngacak toko.<br><br>Jadi bukan karena pelit, tapi biar toko tetap aman dan buyer tetap nyaman belanja.<br><br>Buat buyer, kalian gak perlu masuk sini. Semua akun, harga, dan cara beli udah ada di Beranda. Kalo mau beli / tanya-tanya, langsung chat Admin di WA 0857-2588-7705 aja ya!<br><br>Makasih udah ngerti! 💙</span></div>
+</div>
+<div id="isiAdmin" style="display:none">
+<div style="background:linear-gradient(135deg,#0057FF,#00C6FF);color:#fff;border-radius:18px;padding:16px"><b>⚙️ Admin RIFZZ STORE</b><p style="font-size:12px;opacity:.9">Cuma lu yang bisa liat.</p></div>
+<h3>🔑 Ganti PIN</h3><div style="background:#0E1A36;border-radius:16px;padding:14px"><input id="pinBaru" placeholder="PIN baru, contoh: 4321" maxlength="6"><button class="btn2" onclick="gantiPIN()">💾 SIMPAN PIN</button><button class="btn2" style="margin-top:8px;border-color:#FF2D55;color:#FF2D55" onclick="kunciLagi()">🔒 KUNCI LAGI</button></div>
+<h3>📝 Tambah Akun Baru</h3><div style="background:#0E1A36;border-radius:18px;padding:16px">
+<label>Judul Akun</label><input id="fJudul" placeholder="Contoh: Akun FF SG 2">
+<label>Game</label><select id="fGame"><option>Free Fire</option><option>Mobile Legends</option></select>
+<label>Kategori</label><select id="fKat"><option>Flash Sale</option><option>Pelajar</option><option>Free Fire Reguler</option><option>Mobile Legends Reguler</option></select>
+<label>Harga Coret</label><input id="fCoret" type="number" value="200000">
+<label>Harga Jual</label><input id="fJual" type="number" value="150000">
+<label>Badge</label><input id="fBadge" placeholder="HOT SALE / PROMO">
+<label>URL Foto</label><input id="fUrl" placeholder="https://...">
+<label>Atau Upload Foto</label><input type="file" id="fFile" accept="image/*">
+<label>Deskripsi Singkat</label><textarea id="fDeskS" rows="2"></textarea>
+<label>Deskripsi Lengkap</label><textarea id="fDeskL" rows="4"></textarea>
+<button class="btn" onclick="simpanAkun()">💾 SIMPAN AKUN - SEMUA ORANG BISA LIAT</button></div>
+<h3>📋 Daftar Akun (<span id="jml">0</span>)</h3><div id="listAdmin"></div>
+<button class="btn2" onclick="hapusSemua()">🗑️ HAPUS SEMUA AKUN</button></div></div>
+</div>
+<div class="bottom"><div class="on" onclick="nav(this,'home')">🏠<br>Beranda</div><div onclick="nav(this,'sosmed')">📱<br>Sosial Media</div><div onclick="nav(this,'admin')">⚙️<br>Admin</div><div onclick="nav(this,'bantuan')">🆘<br>Bantuan</div></div>
+</div>
+<div class="modal" id="modal" onclick="if(event.target==this) tutupModal()"><div class="sheet"><div style="text-align:right"><button onclick="tutupModal()" style="border:none;background:#fff;width:36px;height:36px;border-radius:50%;font-size:18px">✕</button></div><img id="mImg"><h2 id="mJudul" style="margin:12px 0 6px;font-size:18px"></h2><div id="mChip"></div><p id="mHarga" style="margin:10px 0"></p><p id="mDeskL" style="font-size:13px;line-height:1.7;color:#CBD5E1;white-space:pre-line"></p><button class="btn-green" onclick="beliWA()">💬 BELI VIA WA - 0857-2588-7705</button><button class="btn2" style="margin-top:8px" onclick="tutupModal()">Tutup</button></div></div>
+<script>
+let cat='all',curr=null,salahPIN=0,adminBuka=false;
+let PIN=localStorage.getItem('rifzz_pin')||'1234';
+let data=[];try{let r=JSON.parse(localStorage.getItem('rifzz_akun'));if(Array.isArray(r))data=r}catch(e){data=[]}
+function chatAdmin(){window.open('https://wa.me/6285725887705?text=Halo%20Min%20Rifzz%20🙏%20Gw%20butuh%20bantuan','_blank')}
+function save(){localStorage.setItem('rifzz_akun',JSON.stringify(data))}
+function rupiah(n){return 'Rp '+Number(n||0).toLocaleString('id-ID')}
+function setCat(c,el){cat=c;document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));el.classList.add('active');render();gsap.from('.card',{y:20,opacity:0,stagger:.06,duration:.5,ease:'power3.out'})}
+function render(){let q=(document.getElementById('cari').value||'').toLowerCase();let list=data.filter(a=>{let ok=true;if(cat=='Free Fire')ok=a.game=='Free Fire';else if(cat=='Mobile Legends')ok=a.game=='Mobile Legends';else if(cat=='Flash Sale')ok=a.kat=='Flash Sale';else if(cat=='Pelajar')ok=a.kat=='Pelajar';return ok&&(a.judul.toLowerCase().includes(q)||a.game.toLowerCase().includes(q))});
+document.getElementById('jmlAtas').innerText=list.length+' Akun';
+document.getElementById('grid').innerHTML=list.map(a=>{let hemat=a.coret>a.jual?Math.round((a.coret-a.jual)/a.coret*100):0;return `<div class="card" onclick="bukaDetail(${a.id})">${a.badge?`<span class="badge">${a.badge}</span>`:''}<img src="${a.img}"><div class="p"><div class="judul">${a.judul}</div><div class="coret">${rupiah(a.coret)}</div><div class="harga">${rupiah(a.jual)} ${hemat?`<span class="hemat">${hemat}% OFF</span>`:''}</div><div class="desc">${a.deskS}</div></div></div>`}).join('');
+document.getElementById('kosong').style.display=list.length?'none':'block';renderAdmin()}
+function renderAdmin(){document.getElementById('jml').innerText=data.length;document.getElementById('listAdmin').innerHTML=data.map(a=>`<div class="admin-card"><img src="${a.img}"><div style="flex:1"><b style="font-size:13px">${a.judul}</b><br><small>${a.game} • ${a.kat} • ${rupiah(a.jual)}</small></div><button onclick="hapusAkun(${a.id})" style="background:#FF2D5533;border:none;padding:8px 12px;border-radius:10px">🗑️</button></div>`).join('')||'<p style="color:#8A9BB8;font-size:13px">Belum ada akun.</p>'}
+function bukaDetail(id){curr=data.find(a=>a.id==id);if(!curr)return;document.getElementById('mImg').src=curr.img;document.getElementById('mJudul').innerText=curr.judul;document.getElementById('mChip').innerHTML=`<span class="chip">${curr.game}</span> <span class="chip">${curr.kat}</span>`;document.getElementById('mHarga').innerHTML=`<span style="text-decoration:line-through;color:#8A9BB8">${rupiah(curr.coret)}</span> <b style="font-size:20px;color:#00C6FF">${rupiah(curr.jual)}</b>`;document.getElementById('mDeskL').innerText=curr.deskL||curr.deskS;document.getElementById('modal').classList.add('on');gsap.from('.sheet',{y:60,opacity:0,duration:.45,ease:'power3.out'})}
+function tutupModal(){document.getElementById('modal').classList.remove('on')}
+function beliWA(){if(!curr)return;let t=`Halo Min Rifzz 🙏 Gw mau beli:\n\n${curr.judul}\nHarga: ${rupiah(curr.jual)}\nGame: ${curr.game}\n\nGas proses ya!`;window.open('https://wa.me/6285725887705?text='+encodeURIComponent(t),'_blank')}
+function nav(el,page){document.querySelectorAll('.bottom div').forEach(d=>d.classList.remove('on'));el.classList.add('on');showPage(page)}
+function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));document.getElementById('page-'+p).classList.add('on');if(p=='admin'){if(!adminBuka){document.getElementById('kunciAdmin').style.display='block';document.getElementById('isiAdmin').style.display='none'}else{document.getElementById('kunciAdmin').style.display='none';document.getElementById('isiAdmin').style.display='block'}renderAdmin()}document.querySelector('.main').scrollTop=0}
+function mintaPIN(){let b=document.querySelectorAll('.bottom div');b.forEach(d=>d.classList.remove('on'));b[2].classList.add('on');showPage('admin')}
+function cekPIN(){let v=document.getElementById('inputPIN').value;if(v==PIN){adminBuka=true;salahPIN=0;document.getElementById('kunciAdmin').style.display='none';document.getElementById('isiAdmin').style.display='block';alert('✅ PIN bener!')}else{salahPIN++;alert('❌ PIN salah!');document.getElementById('inputPIN').value=''}}
+function gantiPIN(){let n=document.getElementById('pinBaru').value.trim();if(!n||n.length<4){alert('PIN minimal 4 angka!');return}PIN=n;localStorage.setItem('rifzz_pin',n);alert('✅ PIN baru: '+n);document.getElementById('pinBaru').value=''}
+function kunciLagi(){adminBuka=false;document.getElementById('inputPIN').value='';showPage('admin')}
+function hapusAkun(id){if(!confirm('Hapus akun ini?'))return;data=data.filter(a=>a.id!=id);save();render()}
+function hapusSemua(){if(!confirm('Hapus SEMUA akun?'))return;data=[];save();render()}
+function simpanAkun(){let judul=document.getElementById('fJudul').value.trim();if(!judul){alert('Isi Judul dulu!');return}let file=document.getElementById('fFile').files[0];let obj={id:Date.now(),judul,game:document.getElementById('fGame').value,kat:document.getElementById('fKat').value,coret:+document.getElementById('fCoret').value||0,jual:+document.getElementById('fJual').value||0,badge:document.getElementById('fBadge').value,img:document.getElementById('fUrl').value||'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80',deskS:document.getElementById('fDeskS').value,deskL:document.getElementById('fDeskL').value};function done(){data.unshift(obj);save();render();alert('✅ Akun disimpan! Semua orang langsung bisa liat.');showPage('home');nav(document.querySelectorAll('.bottom div')[0],'home');gsap.from('.card',{y:20,opacity:0,stagger:.08,duration:.5})}if(file){let r=new FileReader();r.onload=e=>{obj.img=e.target.result;done()};r.readAsDataURL(file)}else done()}
+try{
+const lenis=new Lenis({lerp:0.09,smoothWheel:true});function raf(t){lenis.raf(t);requestAnimationFrame(raf)}requestAnimationFrame(raf);
+gsap.from('#hero',{y:30,opacity:0,scale:.97,duration:.8,ease:'power3.out'});
+gsap.from('.mini div',{y:20,opacity:0,stagger:.1,delay:.2,duration:.6,ease:'power3.out'});
+}catch(e){}
+render();
+</script></body></html>
